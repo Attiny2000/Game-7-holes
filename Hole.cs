@@ -5,6 +5,7 @@ namespace _7_holes
     public class Hole {
         public Button button;
         public string color;
+        public bool isEmpty = true;
 
         public Hole(Button button)
         {
@@ -16,6 +17,7 @@ namespace _7_holes
         {
             this.button = button;
             this.color = color;
+            this.isEmpty = false;
         }
     }
 }

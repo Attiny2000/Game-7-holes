@@ -51,20 +51,26 @@ namespace _7_holes
 
         private void noSelectButton1_Click(object sender, EventArgs e)
         {
-            for(int i=0; i<7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 if (holes[i].button.Focused)
                 {
                     try
                     {
-                        string colorSwap = holes[i - 1].color;
-                        holes[i - 1].color = holes[i].color;
-                        holes[i].color = colorSwap;
-
-                        Image bitmapSwap = holes[i - 1].button.BackgroundImage;
-                        holes[i - 1].button.BackgroundImage = holes[i].button.BackgroundImage;
-                        holes[i].button.BackgroundImage = bitmapSwap;
-                        holes[i - 1].button.Focus();
+                        for (int j = i; j >= 0; j--)
+                        {
+                            if (holes[j].isEmpty)
+                            {
+                                holes[j].color = holes[i].color;
+                                holes[j].button.BackgroundImage = holes[i].button.BackgroundImage;
+                                holes[j].isEmpty = false;
+                                holes[j].button.Focus();
+                                holes[i].button.BackgroundImage = null;
+                                holes[i].color = "No color";
+                                holes[i].isEmpty = true;
+                                break;
+                            }
+                        }
                         checkResult();
                     }
                     catch { }
@@ -86,14 +92,20 @@ namespace _7_holes
                 {
                     try
                     {
-                        string colorSwap = holes[i + 1].color;
-                        holes[i + 1].color = holes[i].color;
-                        holes[i].color = colorSwap;
-
-                        Image bitmapSwap = holes[i + 1].button.BackgroundImage;
-                        holes[i + 1].button.BackgroundImage = holes[i].button.BackgroundImage;
-                        holes[i].button.BackgroundImage = bitmapSwap;
-                        holes[i + 1].button.Focus();
+                        for (int j = i; j < 7; j++)
+                        {
+                            if (holes[j].isEmpty)
+                            {
+                                holes[j].color = holes[i].color;
+                                holes[j].button.BackgroundImage = holes[i].button.BackgroundImage;
+                                holes[j].isEmpty = false;
+                                holes[j].button.Focus();
+                                holes[i].button.BackgroundImage = null;
+                                holes[i].color = "No color";
+                                holes[i].isEmpty = true;
+                                break;
+                            }
+                        }    
                         checkResult();
                     }
                     catch { }
