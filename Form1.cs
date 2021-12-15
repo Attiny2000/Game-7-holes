@@ -59,7 +59,7 @@ namespace _7_holes
                     {
                         for (int j = i; j >= 0; j--)
                         {
-                            if (holes[j].isEmpty)
+                            if (holes[j].isEmpty && i-j < 3)
                             {
                                 holes[j].color = holes[i].color;
                                 holes[j].button.BackgroundImage = holes[i].button.BackgroundImage;
@@ -94,7 +94,7 @@ namespace _7_holes
                     {
                         for (int j = i; j < 7; j++)
                         {
-                            if (holes[j].isEmpty)
+                            if (holes[j].isEmpty && j-i < 3)
                             {
                                 holes[j].color = holes[i].color;
                                 holes[j].button.BackgroundImage = holes[i].button.BackgroundImage;
